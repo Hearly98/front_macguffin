@@ -1,0 +1,35 @@
+<div class='bg-slate-400 flex text-custom-menu-text'>
+    <div class='flex justify-end'>
+        <img
+        src="/assets/icons/hamburger.svg"
+        class="absolute cursor-pointer top-2 w-12 h-11 z-10  duration-500"
+        (click)="toggleSidebar()"
+      />
+      
+      <div [ngClass]="{'w-56': open, 'w-12': !open}" class="flex align-center duration-500 h-screen gap-2 bg-purple relative">
+       
+        <ul class='flex flex-col overflow-x-hidden' [class.w-full]="open">
+            <li class="tracking-wide px-2 py-4 text-xl font-bold">
+                <span [class.opacity-0]="!open" class="duration-300 cursor-text">MACGUFFIN</span>
+              </li>
+          <ng-container *ngFor="let menu of menues">
+            <li [routerLink]="menu.path" class='text-sm flex flex-col cursor-pointer p-3 hover:bg-slate-500'>
+              <a (click)="toggleSubmenu(menu)" class="flex items-center gap-x-2">
+                <img [src]="menu.icon" class=""/>
+                <span [class.hidden]="!open" class="duration-300 tracking-wide text-base font-medium">{{ menu.text }}</span>
+              </a>
+             <!--Si en caso hay submodulos los mostrará-->
+              <ul *ngIf="menu.submenu && menu.open" class='pt-2'>
+                <ng-container *ngFor="let sub of menu.submenu">
+                  <li class="pl-4 text-xs flex items-center gap-x-2 cursor-pointer">
+                    <a [routerLink]="sub.path" [class.hidden]="!open" class="duration-300 tracking-wide p-3 font-medium text-sm">{{ sub.text }}</a>
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ul>
+      </div>       
+    </div>
+  </div>
+  

@@ -1,1 +1,6 @@
-<p>admin works!</p>
+<div class="flex h-screen w-full">
+  <c-sidebar [menues]="menues"> </c-sidebar>
+  <div class="flex-grow">
+    <router-outlet></router-outlet>
+  </div>
+</div>
