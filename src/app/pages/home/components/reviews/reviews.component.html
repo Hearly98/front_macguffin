@@ -1,0 +1,13 @@
+<div class="bg-review py-32 px-10 flex flex-col gap-10 justify-center items-center">
+  <h2 class="font-playfair text-neutral-100 text-6xl">Reseñas</h2>
+  <div class="flex gap-10">
+    <app-card-review
+      *ngFor="let data of listReview"
+      [title]="data.title"
+      [rating]="data.rating"
+      [review]="data.review"
+      [img]="data.img"
+    >
+    </app-card-review>
+  </div>
+</div>
