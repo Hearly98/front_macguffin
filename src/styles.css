@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url(/assets/fonts/PlayfairDisplay-Black.ttf) format('trueType');
+    }
+    @font-face {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(/assets/fonts/Lato-Regular.ttf) format('trueType');
+    }
+  }
