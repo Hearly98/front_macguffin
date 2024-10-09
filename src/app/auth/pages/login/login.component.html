@@ -1,10 +1,18 @@
-<form (submit)="doLogin()">
-    <h1>Iniciar Sesión</h1>
-    <label for="">Correo</label>
-    <input type="text">
-    <label for="">Contraseña</label>
-    <input type="text">
-    <button type="submit">Iniciar Sesión</button>
-</form>
-<span>¿No tienes una cuenta?</span>
-<span><a href="/registro">Registrate</a></span>
+<div class="bg-neutral-900 flex flex-col md:flex-auto sm:flex-row py-16 px-10 h-screen justify-center items-center md:gap-10">
+    <div class="hidden md:block">
+        <img class="max-w-96 rounded-2xl" src="/assets/images/rollos.png" alt="rollos de película">
+    </div>
+    <form class="flex flex-col text-neutral-100 py-16 px-2 gap-5 justify-center min-w-96 max-w-auto" (submit)="doLogin()">
+        <div>
+            <h1 class="text-6xl font-playfair text-center">MacGuffin</h1>
+        </div>
+        <div class="flex flex-col justify-stretch items-start w-full">
+            <label for="">Correo</label>
+            <input class="bg-transparent text-neutral-500 border w-full rounded-lg p-3" placeholder="Ingrese su correo electrónico" type="text">
+            <label for="">Contraseña</label>
+            <input class="bg-transparent text-neutral-500 border w-full rounded-lg p-3" placeholder="Ingrese su contraseña" type="password">
+        </div>
+        <button class="rounded-lg  hover:bg-neutral-200 bg-neutral-300 text-neutral-900 font-bold py-4 px-16" type="submit">Iniciar Sesión</button>
+        <span class="text-sm text-neutral-500">¿No tienes una cuenta? <a class="text-neutral-100" href="/registro">Registrate</a></span>
+    </form>
+</div>
