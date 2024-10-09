@@ -18,14 +18,6 @@
                 <img [src]="menu.icon" class=""/>
                 <span [class.hidden]="!open" class="duration-300 tracking-wide text-base font-medium">{{ menu.text }}</span>
               </a>
-             <!--Si en caso hay submodulos los mostrará-->
-              <ul *ngIf="menu.submenu && menu.open" class='pt-2'>
-                <ng-container *ngFor="let sub of menu.submenu">
-                  <li class="pl-4 text-xs flex items-center gap-x-2 cursor-pointer">
-                    <a [routerLink]="sub.path" [class.hidden]="!open" class="duration-300 tracking-wide p-3 font-medium text-sm">{{ sub.text }}</a>
-                  </li>
-                </ng-container>
-              </ul>
             </li>
           </ng-container>
         </ul>

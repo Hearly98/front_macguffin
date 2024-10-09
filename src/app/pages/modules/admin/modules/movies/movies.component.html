@@ -1,1 +1,153 @@
-<p>movies works!</p>
+<section class="w-full px-14 py-6">
+    <h1 class="font-semibold text-4xl text-darkBlue">Película</h1>
+    <div class="flex justify-between py-6">
+       <button (click)="openModal()" class="bg-gray-300 p-2 font-medium rounded-lg">Crear Nuevo</button>
+    </div>
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Nombre Película
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Código
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Categoría
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Monto
+                </th>
+                <th scope="col" class="px-6 py-3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b" *ngFor="let movie of movies(); let i = index">
+                <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
+                {{movie.code}}
+                </th>
+                <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
+                {{movie.name}}
+                </th>
+                <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
+                {{movie.category.name}}
+                </th>
+                <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
+                {{movie.price}}
+                </th>
+                <td scope="col" class="flex px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    <button (click)="openUpdateModal(movie)"><img src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/edit.svg"/></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</section>
+
+
+<div *ngIf="isOpenModal" class="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
+    <div class="bg-white rounded-lg border w-1/2 p-6">
+        <button (click)="closeModal()" class="absolute top-3 right-3">
+            <img src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/close-icon.svg" alt="close" loading="lazy">
+        </button>
+        <form [formGroup]="movieForm" (ngSubmit)="addMovie()" class="flex flex-col gap-3">
+            <h2 class="font-semibold text-4xl text-darkBlue">Crear película</h2>
+            <div>
+                <label for="name">Nombre de la Película</label>
+                <input type="text" class="border rounded-lg p-2" formControlName="name" placeholder="Nombre de la película">   
+                <div *ngIf="movieForm.get('name')?.invalid && movieForm.get('name')?.touched">
+                    <span class="text-sm text-red-800">El nombre de la película es requerida</span>
+                </div> 
+            </div>
+            <div>
+                <label for="code">Código de la Película</label>
+                <input type="text" class="border rounded-lg p-2" formControlName="code" placeholder="Código de la película">    
+                <div *ngIf="movieForm.get('code')?.invalid && movieForm.get('code')?.touched">
+                    <span class="text-sm text-red-800">El código de la película es requerida</span>
+                </div> 
+            </div>
+            <div>
+                <label for="category">Categoría del película</label>
+                <select formControlName="category">
+                    <option *ngFor="let category in loadCategories()" [ngValue]="category">{{ category.name }}</option>
+                  </select>
+                <div *ngIf="movieForm.get('category')?.invalid && movieForm.get('category')?.touched">
+                    <span class="text-sm text-red-800">La categoría es requerida</span>
+                </div> 
+            </div>
+            <div>
+                <label for="description">Descripción de la película</label>
+                <textarea class="border rounded-lg p-2" formControlName="description" placeholder="Descripción de la película"></textarea>
+                <div *ngIf="movieForm.get('description')?.invalid && movieForm.get('description')?.touched">
+                    <span class="text-sm text-red-800">La descripción de la película es requerida</span>
+                </div> 
+            </div>
+            <div>
+            <label for="price">Precio</label>
+            <input type="number" formControlName="price" class="border rounded-lg p-2">
+            <div *ngIf="movieForm.get('price')?.invalid && movieForm.get('price')?.touched">
+                <span class="text-sm text-red-800">El precio de la película es requerida</span>
+            </div>
+            </div>
+            <div>
+                <label for="image">Imagen</label>
+                <input type="file" formControlName="image">
+            </div>
+            <button type="submit" class="bg-blue-600 text-white p-2">Guardar Película</button>
+        </form>
+    </div>
+</div>
+<div *ngIf="isOpenUpdateModal" class="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
+    <div class="bg-white rounded-lg border w-1/2 p-6">
+        <button (click)="closeUpdateModal()" class="absolute top-3 right-3">
+            <img src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/close-icon.svg" alt="close" loading="lazy">
+        </button>
+        <form [formGroup]="movieForm" (ngSubmit)="updateMovie()" class="flex flex-col gap-3">
+            <h2 class="font-semibold text-4xl text-darkBlue">Crear película</h2>
+            <div>
+                <label for="name">Nombre de la Película</label>
+                <input type="text" class="border rounded-lg p-2" formControlName="name" placeholder="Nombre de la película">   
+                <div *ngIf="movieForm.get('name')?.invalid && movieForm.get('name')?.touched">
+                    <span class="text-sm text-red-800">El nombre de la película es requerida</span>
+                </div> 
+            </div>
+            <div>
+                <label for="code">Código de la Película</label>
+                <input type="text" class="border rounded-lg p-2" formControlName="code" placeholder="Código de la película">    
+                <div *ngIf="movieForm.get('code')?.invalid && movieForm.get('code')?.touched">
+                    <span class="text-sm text-red-800">El código de la película es requerida</span>
+                </div> 
+            </div>
+            <div>
+                <label for="category">Categoría del película</label>
+                <select formControlName="category">
+                    <option *ngFor="let category in loadCategories()" [ngValue]="category">{{ category.name }}</option>
+                  </select>
+                <div *ngIf="movieForm.get('category')?.invalid && movieForm.get('category')?.touched">
+                    <span class="text-sm text-red-800">La categoría es requerida</span>
+                </div> 
+            </div>
+            <div>
+                <label for="description">Descripción de la película</label>
+                <textarea class="border rounded-lg p-2" formControlName="description" placeholder="Descripción de la película">
+                </textarea>
+                <div *ngIf="movieForm.get('description')?.invalid && movieForm.get('description')?.touched">
+                    <span class="text-sm text-red-800">La descripción de la película es requerida</span>
+                </div> 
+            </div>
+            <div>
+            <label for="price">Precio</label>
+            <input type="number" formControlName="price" class="border rounded-lg p-2">
+            <div *ngIf="movieForm.get('price')?.invalid && movieForm.get('price')?.touched">
+                <span class="text-sm text-red-800">El precio de la película es requerida</span>
+            </div>
+            </div>
+            <div>
+                <label for="image">Imagen</label>
+                <input type="file" formControlName="image">
+            </div>
+            <button type="submit" class="bg-blue-600 text-white p-2">Actualizar Película</button>
+        </form>
+    </div>
+</div>
