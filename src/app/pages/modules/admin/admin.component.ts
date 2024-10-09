@@ -11,8 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class AdminComponent {
   menues=[
-    {path:'dashboard', text:'Dashboard', icon:'/assets/icons/chart_pie.svg'},
-    {path:'ventas', text:'Ventas', icon:'/assets/icons/chart_line.svg'},
-    {path:'peliculas', text: 'Peliculas', icon: '/assets/icons/play_circle.svg'}
+    {path:'/admin/dashboard', text:'Dashboard', icon:'/assets/icons/chart_pie.svg'},
+    {path:'/admin/ventas', text:'Ventas', icon:'/assets/icons/chart_line.svg'},
+    {path:'/admin/peliculas', text: 'Peliculas', icon: '/assets/icons/play_circle.svg'}
   ]
 }
