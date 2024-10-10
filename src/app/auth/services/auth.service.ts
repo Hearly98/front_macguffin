@@ -7,16 +7,16 @@ import { Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-   apiUrl = enviroment.API_URL;
+   apiUrl = enviroment.API_SERVICE_AUTH;
 
   constructor(private http: HttpClient) { }
   
  
   login(loginData: LoginRequest): Observable<any>{
-    return this.http.post(`${this.apiUrl}/api/auth/login`, loginData)
+    return this.http.post(`${this.apiUrl}/login`, loginData)
   }
   register(loginData: LoginRequest): Observable<any>{
-    return this.http.post(`${this.apiUrl}/api/auth/register`, loginData)
+    return this.http.post(`${this.apiUrl}/register`, loginData)
   }
 
   
