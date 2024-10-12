@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit{
         this.message = "Iniciando sesión...";
         this.authService.login(this.loginData).subscribe({
             next: (response) => {
+                console.log(response);
                 this.message = "¡Login exitoso!";
                 this.success = true;
                 setTimeout(() => {
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit{
                 }, 3000);
             },
             error: (error) => {
+                console.error('Error de login', error);
                     this.message = `Los datos ingresados son incorrectos`;
                 this.success = false;
                 setTimeout(() => {
