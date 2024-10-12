@@ -10,20 +10,20 @@ import { enviroment } from '../../../../../../../environments/environment.dev';
 })
 export class MovieService {
   constructor(private http:HttpClient) { }
-  url=`${enviroment.API_SERVICE_MOVIE}/movie`
+  url=`${enviroment.API_SERVICE_MOVIE}/movies`
 
   getMovies():Observable<GetMovie[]>{
-    return this.http.get<GetMovie[]>(`${this.url}/all`)
+    return this.http.get<GetMovie[]>(`${this.url}/list`)
   }
   getMovieById(id: number): Observable<GetMovie> {
     return this.http.get<GetMovie>(`${this.url}/${id}`);
   }
 
   create(data: Movie): Observable<Movie> {
-    return this.http.post<Movie>(`${this.url}/save`, data);
+    return this.http.post<Movie>(`${this.url}/create`, data);
   }
 
-  update(data: UpdateMovie): Observable<UpdateMovie> {
-    return this.http.put<UpdateMovie>(`${this.url}/update`, data);
+  update(id: number,data: UpdateMovie): Observable<UpdateMovie> {
+    return this.http.put<UpdateMovie>(`${this.url}/${id}`, data);
   }
 }

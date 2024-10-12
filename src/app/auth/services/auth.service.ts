@@ -3,15 +3,31 @@ import { Injectable } from '@angular/core';
 import { enviroment } from '../../../environments/environment.dev';
 import { LoginRequest } from '../models/login';
 import { Observable, throwError } from 'rxjs';
+import { LocalStorageService } from './localStorage.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
    apiUrl = enviroment.API_SERVICE_AUTH;
-
-  constructor(private http: HttpClient) { }
+    public jwtHelperService: JwtHelperService = new JwtHelperService();
+  constructor(private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) { }
   
- 
+  isAuthenticated() {
+    const token = localStorage.getItem("token");
+    return token && !this.jwtHelperService.isTokenExpired(token);
+}
+
+getDecodedToken() {
+  const token = this.localStorageService.getItem("token");
+  if (token) {
+      return this.jwtHelperService.decodeToken(token);
+  }
+  return null;
+}
+
   login(loginData: LoginRequest): Observable<any>{
     return this.http.post(`${this.apiUrl}/login`, loginData)
   }
