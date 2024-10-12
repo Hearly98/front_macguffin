@@ -111,7 +111,8 @@ export class MoviesComponent implements OnInit{
   updateMovie(): void {
     if(this.movieForm.valid){
        const updateMovie = this.movieForm.value;
-      this.movieService.update(updateMovie).subscribe({
+       const id = this.movieForm.value
+      this.movieService.update(updateMovie, id).subscribe({
         next: (response) => {
           this.submitted = true;
           this.fetchMovies();
