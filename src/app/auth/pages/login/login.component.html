@@ -3,7 +3,7 @@
         <img class="max-w-96 rounded-2xl" src="/assets/images/rollos.png" alt="rollos de película">
     </div>
     <div *ngIf="message" class="absolute top-5 w-full flex justify-center animate-slide-down">
-        <ng-container *ngIf="message === 'success'; else errorTemplate">
+        <ng-container *ngIf="message === '¡Login exitoso!'; else errorTemplate">
             <div class="bg-green-200 text-green-800 flex items-center p-4 mb-4 text-sm rounded-lg" role="alert">
                 <img class="w-4" src="/assets/icons/alert-success.svg" alt="Success Alert">
                 <span class="font-medium ml-1">{{ message }}</span>

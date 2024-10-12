@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category';
 import { HttpClient } from '@angular/common/http';
-import { enviroment } from '../../../../../../../environments/environment.dev';
+import { environment } from '../../../../../../../environments/environment.dev';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoryService {
   constructor(private http: HttpClient) {}
-  url = `${enviroment.API_SERVICE_MOVIE}/category`;
+  url = `${environment.API_SERVICE_MOVIE}/category`;
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.url}/all`);
   }

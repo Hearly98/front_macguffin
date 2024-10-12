@@ -1,4 +1,4 @@
-export const enviroment ={
+export const environment ={
     production: false,
     API_SERVICE_AUTH: 'https://microservicio-auth-peliculas.onrender.com/auth',
     API_SERVICE_USER: 'https://microservicio-auth-peliculas.onrender.com/users',

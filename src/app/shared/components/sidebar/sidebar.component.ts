@@ -24,6 +24,14 @@ export class SidebarComponent {
     }
   }
   navigateTo(path:string){
-    this.router.navigate([path]);
+    if (path) {
+      this.router.navigate([path]);
+    }
   }
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.clear()
+    this.router.navigate(['/login']);
+  }
+  
 }

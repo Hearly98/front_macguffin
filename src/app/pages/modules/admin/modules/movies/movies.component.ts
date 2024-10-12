@@ -119,7 +119,6 @@ export class MoviesComponent implements OnInit{
           this.closeUpdateModal();
         },
         error: (err) => {
-          console.error('Error al actualizar película:', err);
           this.errorMessage = 'Error al actualizar película.';
         },
       });

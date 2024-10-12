@@ -8,18 +8,25 @@
       
       <div [ngClass]="{'w-56': open, 'w-12': !open}" class="flex align-center duration-500 h-screen gap-2 bg-purple relative">
        
-        <ul class='flex flex-col overflow-x-hidden' [class.w-full]="open">
+        <ul class='flex flex-col  overflow-x-hidden' [class.w-full]="open">
             <li class="tracking-wide px-2 py-4 text-xl font-bold">
                 <span [class.opacity-0]="!open" class="duration-300 cursor-text">MACGUFFIN</span>
               </li>
-          <ng-container *ngFor="let menu of menues">
-            <li [routerLink]="menu.path" class='text-sm flex flex-col cursor-pointer p-3 hover:bg-slate-500'>
-              <a (click)="toggleSubmenu(menu)" class="flex items-center gap-x-2">
-                <img [src]="menu.icon" class=""/>
+          <ng-container  *ngFor="let menu of menues">
+            <li class='text-sm flex flex-col cursor-pointer p-3 hover:bg-slate-500'>
+              <a [routerLink]="menu.path" (click)="toggleSubmenu(menu)" class="flex items-center gap-x-2">
+                <img [src]="menu.icon"/>
                 <span [class.hidden]="!open" class="duration-300 tracking-wide text-base font-medium">{{ menu.text }}</span>
               </a>
             </li>
+            
           </ng-container>
+          <li class="mt-auto p-3 hover:bg-slate-500 cursor-pointer">
+            <a (click)="logout()" class="flex items-center gap-x-2">
+              <img src="/assets/icons/logout.svg" alt="Cerrar sesión icono"/>
+              <span [class.hidden]="!open" class="duration-300 tracking-wide text-base font-medium">Cerrar Sesión</span>
+            </a>
+          </li>
         </ul>
       </div>       
     </div>

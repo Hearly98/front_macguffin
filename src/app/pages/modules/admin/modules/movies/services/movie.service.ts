@@ -4,13 +4,13 @@ import { Movie } from '../models/movie';
 import { GetMovie } from '../models/get-movie';
 import { UpdateMovie } from '../models/update-movie';
 import { Observable } from 'rxjs';
-import { enviroment } from '../../../../../../../environments/environment.dev';
+import { environment } from '../../../../../../../environments/environment.dev';
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
   constructor(private http:HttpClient) { }
-  url=`${enviroment.API_SERVICE_MOVIE}/movies`
+  url=`${environment.API_SERVICE_MOVIE}/movies`
 
   getMovies():Observable<GetMovie[]>{
     return this.http.get<GetMovie[]>(`${this.url}/list`)
