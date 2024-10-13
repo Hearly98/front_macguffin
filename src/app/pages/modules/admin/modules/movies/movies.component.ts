@@ -6,6 +6,8 @@ import { CategoryService } from '../category/services/category.service';
 import { GetMovie } from './models/get-movie';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { GenreService } from '../genres/services/genre.service';
+import { GenreModel } from '../genres/models/genre.model';
 
 @Component({
   selector: 'app-movies',
@@ -16,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class MoviesComponent implements OnInit{
   movieForm: FormGroup;
-  categories = signal<Category[]>([]);
+  genres = signal<GenreModel[]>([]);
   movies = signal<GetMovie[]>([]);
   selectedMovie?: GetMovie;
   submitted = false;
@@ -24,7 +26,7 @@ export class MoviesComponent implements OnInit{
   isOpenModal = false;
   private fb = inject(FormBuilder);
   private movieService = inject(MovieService);
-  private categoryService = inject(CategoryService);
+  private genresService = inject(GenreService);
   errorMessage: string | null = null;
 
   constructor() {
@@ -32,14 +34,14 @@ export class MoviesComponent implements OnInit{
       idMovie: [0],
       name: ['', Validators.required],
       descripcion: ['', Validators.required],
-      category: ['', Validators.required],
+      genre: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
       image: ['', Validators.nullValidator]
     });
   }
 
   ngOnInit() {
-    this.loadCategories();
+    this.loadGenres();
     this.fetchMovies();
   }
 
@@ -59,20 +61,19 @@ export class MoviesComponent implements OnInit{
     this.isOpenUpdateModal = false;
   }
 
-  //Cargará los datos para el select de Categorías
-  loadCategories() {
-    this.categoryService.getCategories().subscribe({
-      next: (categories: Category[]) => {
-        this.categories.set(categories);
+  loadGenres() {
+    this.genresService.getGenres().subscribe({
+      next: (genres: GenreModel[]) => {
+        this.genres.set(genres);
       },
       error: (err: any) => {
-        console.error('Error loading categories:', err);
+        console.error('Error loading géneros:', err);
         this.errorMessage =
-          'No se pueden cargar las categorías en este momento';
+          'No se pueden cargar los géneros en este momento';
       },
     });
   }
-  //Cargará las películas al momento de cargar la páginas
+
   fetchMovies() {
     this.movieService.getMovies().subscribe({
       next: (movies) => {
@@ -84,7 +85,6 @@ export class MoviesComponent implements OnInit{
       },
     });
   }
-  //Dependiendo el id mostrará el detalle
   loadMovieDetails(id:number):void{
     this.movieService.getMovieById(id).subscribe((movie)=>{
       this.selectedMovie = movie;
@@ -92,7 +92,6 @@ export class MoviesComponent implements OnInit{
   }
   addMovie(): void {
     if(this.movieForm.valid){
-      //validamos que todos los datos se hayan colocado correctamente
       const newMovie = this.movieForm.value;
       this.movieService.create(newMovie).subscribe(
         (response) => {
@@ -101,7 +100,7 @@ export class MoviesComponent implements OnInit{
           this.closeModal();
         },
         (error) => {
-          this.errorMessage = 'Error al registrar un Producto.';
+          this.errorMessage = 'Error al registrar una Película.';
         }
       );
     }else{

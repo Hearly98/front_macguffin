@@ -1,4 +1,5 @@
+import { GetGenreModel } from "@admin/modules/genres/models/get-genre.model";
 import { Movie } from "./movie";
 export class GetMovie extends Movie{
-    idMovie: number = 0;
+    genre: GetGenreModel | undefined
 }

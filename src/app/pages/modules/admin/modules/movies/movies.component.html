@@ -11,13 +11,13 @@
                     Nombre Película
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Código
+                    Año de Lanzamiento
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Categoría
+                    Género
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Monto
+                    Descripción
                 </th>
                 <th scope="col" class="px-6 py-3">Acciones</th>
             </tr>
@@ -25,19 +25,19 @@
         <tbody>
             <tr class="border-b" *ngFor="let movie of movies(); let i = index">
                 <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
-                {{movie.code}}
+                {{movie.title}}
                 </th>
                 <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
-                {{movie.name}}
+                {{movie.release_year}}
                 </th>
                 <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
-                {{movie.category.name}}
+                {{movie.genre}}
                 </th>
                 <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
-                {{movie.price}}
+                {{movie.description}}
                 </th>
                 <td scope="col" class="flex px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <button (click)="openUpdateModal(movie)"><img src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/edit.svg"/></button>
+                    <button (click)="openUpdateModal(movie)"><img src="/assets/icons/Edit.svg"/></button>
                 </td>
             </tr>
         </tbody>
@@ -49,7 +49,7 @@
 <div *ngIf="isOpenModal" class="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
     <div class="bg-white rounded-lg border w-1/2 p-6">
         <button (click)="closeModal()" class="absolute top-3 right-3">
-            <img src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/close-icon.svg" alt="close" loading="lazy">
+            <img src="/assets/icons/Close.svg" alt="close" loading="lazy">
         </button>
         <form [formGroup]="movieForm" (ngSubmit)="addMovie()" class="flex flex-col gap-3">
             <h2 class="font-semibold text-4xl text-darkBlue">Crear película</h2>

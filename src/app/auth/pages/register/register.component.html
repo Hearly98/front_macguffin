@@ -6,19 +6,19 @@
         <div>
             <h1 class="text-6xl font-playfair text-center">MacGuffin</h1>
         </div>
-        <div class="flex flex-col justify-stretch items-start w-full">
-            <label for="name">Nombre</label>
-            <input id="name" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su nombre" type="text">
-            <label for="last_name">Apellidos</label>
-            <input class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su apellido" type="text">
-            <label id="last_name" for="">Fecha de Nacimiento</label>
-            <input class="bg-transparent text-neutral-100 border w-full rounded-lg p-3 " placeholder="Ingrese su Fecha de Nacimiento" type="date">
-            <label for="phone">Teléfono</label>
-            <input id="phone" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su teléfono" type="text">
-            <label for="username">Nombre de usuario</label>
-            <input id="username" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su nombre de usuario" type="text">
-            <label for="password">Contraseña</label>
-            <input id="password" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su contraseña" type="password">
+        <div class="flex flex-col justify-stretch    items-start w-full">
+            <label>Nombre</label>
+            <input [(ngModel)]="registerModel.nombre" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su nombre" type="text">
+            <label >Apellidos</label>
+            <input [(ngModel)]="registerModel.apellido" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su apellido" type="text">
+            <label for="">Fecha de Nacimiento</label>
+            <input [(ngModel)]="registerModel.fechaNacimiento" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3 " placeholder="Ingrese su Fecha de Nacimiento" type="date">
+            <label>Teléfono</label>
+            <input [(ngModel)]="registerModel.telefono" [ngModelOptions]="{standalone: true}"  class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su teléfono" type="text">
+            <label>Nombre de usuario</label>
+            <input [(ngModel)]="registerModel.usuario" [ngModelOptions]="{standalone: true}"  class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su nombre de usuario" type="text">
+            <label>Contraseña</label>
+            <input [(ngModel)]="registerModel.password"  [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su contraseña" type="password">
 
         </div>
         <button class="rounded-lg  hover:bg-neutral-200 bg-neutral-300 text-neutral-900 font-bold py-4 px-16" type="submit">Registrarse</button>

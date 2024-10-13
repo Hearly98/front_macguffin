@@ -21,10 +21,7 @@ export class LoginComponent implements OnInit{
   }
   success: boolean = false;
   message = "";
-  loginData :LoginRequest = {
-    "username": '',
-    "password": ''
-  }
+  loginData :LoginRequest = new LoginRequest()
   constructor(
     private authService: AuthService,
     private router: Router

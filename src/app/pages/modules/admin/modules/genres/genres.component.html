@@ -1,0 +1,65 @@
+<section class="w-full px-14 py-6">
+    <h1 class="font-semibold text-4xl text-darkBlue">Géneros</h1>
+    <div class="flex justify-between py-6">
+       <button (click)="openModal()" class="bg-gray-300 p-2 font-medium rounded-lg">Crear Nuevo</button>
+    </div>
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Género
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b" *ngFor="let genre of genres; let i = index">
+                <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
+                {{genre.name}}
+                </th>
+                <td scope="col" class="flex px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    <button (click)="openUpdateModal(genre)"><img src="/assets/icons/Edit.svg"/></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</section>
+
+
+<div *ngIf="isOpenModal" class="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
+    <div class="bg-white rounded-lg border w-1/2 p-6">
+        <button (click)="closeModal()" class="absolute top-3 right-3">
+            <img src="/assets/icons/Close.svg" alt="close" loading="lazy">
+        </button>
+        <form [formGroup]="genreForm" (ngSubmit)="addGenre()" class="flex flex-col gap-3">
+            <h2 class="font-semibold text-4xl text-darkBlue">Crear Género</h2>
+            <div>
+                <label for="name">Nombre del Género</label>
+                <input type="text" class="border rounded-lg p-2" formControlName="name" placeholder="Nombre del género">   
+                <div *ngIf="genreForm.get('name')?.invalid && genreForm.get('name')?.touched">
+                    <span class="text-sm text-red-800">El nombre del género es requerido</span>
+                </div> 
+            </div>            
+            <button type="submit" class="bg-blue-600 text-white p-2">Guardar Género</button>
+        </form>
+    </div>
+</div>
+<div *ngIf="isOpenUpdateModal" class="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
+    <div class="bg-white rounded-lg border w-1/2 p-6">
+        <button (click)="closeUpdateModal()" class="absolute top-3 right-3">
+            <img src="/assets/icons/Close.svg" alt="close" loading="lazy">
+        </button>
+        <form [formGroup]="genreForm" (ngSubmit)="updateGenre()" class="flex flex-col gap-3">
+            <h2 class="font-semibold text-4xl text-darkBlue">Actualizar Género</h2>
+            <div>
+                <label for="name">Nombre del Género</label>
+                <input type="text" class="border rounded-lg p-2" formControlName="name" placeholder="Nombre del género">   
+                <div *ngIf="genreForm.get('name')?.invalid && genreForm.get('name')?.touched">
+                    <span class="text-sm text-red-800">El nombre del género es requerido</span>
+                </div> 
+            </div>
+            <button type="submit" class="bg-blue-600 text-white p-2">Actualizar Género</button>
+        </form>
+    </div>
+</div>

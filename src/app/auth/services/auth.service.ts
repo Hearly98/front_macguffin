@@ -5,6 +5,7 @@ import { LoginRequest } from '../models/login';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { LoginResponse } from '../models/login-response';
+import { RegisterModel } from '../models/register';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,8 +41,8 @@ login(loginData: LoginRequest): Observable<LoginResponse> {
 
 
 
-register(loginData: LoginRequest): Observable<any>{
-  return this.http.post(`${this.apiUrl}/api/auth/register`, loginData)
+register(loginData: RegisterModel): Observable<any>{
+  return this.http.post(`${this.apiUrl}/register`, loginData)
 }
 
 
