@@ -6,18 +6,20 @@
 <div class="relative overflow-x-auto">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-                <th scope="col" class="px-6 py-3">
+            <tr class="border">
+                <th scope="col" class="px-6 py-3 border">
                     Género
+                </th>
+                <th scope="col" class="px-6 py-3 border">
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="border-b" *ngFor="let genre of genres; let i = index">
-                <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap">
+            <tr class="border" *ngFor="let genre of genres; let i = index">
+                <th scope="row" class="col-span-4 px-6 py-4 font-light text-gray-900 whitespace-nowrap border">
                 {{genre.name}}
                 </th>
-                <td scope="col" class="flex px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                <td scope="col" class="col-span-1 flex px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     <button (click)="openUpdateModal(genre)"><img src="/assets/icons/Edit.svg"/></button>
                 </td>
             </tr>

@@ -1,11 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GenreModel } from './models/genre.model';
-import { GetGenreModel } from './models/get-genre.model';
 import { GenreService } from './services/genre.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { UpdateGenreModel } from './models/update-genre.model';
 
 @Component({
   selector: 'app-genres',
@@ -15,20 +13,19 @@ import { UpdateGenreModel } from './models/update-genre.model';
   styleUrl: './genres.component.css'
 })
 export class GenresComponent {
-  genreId: number = 0;
   genreForm: FormGroup;
-  selectedGenre?: GetGenreModel;
-  updatedGenreData: UpdateGenreModel = new UpdateGenreModel();
+  selectedGenre: number = 0;
+  updatedGenreData: GenreModel = new GenreModel();
   submitted = false;
   isOpenUpdateModal = false;
   isOpenModal = false;
   private fb = inject(FormBuilder);
   private genreService = inject(GenreService);
   errorMessage: string | null = null;
-  genres: GetGenreModel[] = []; 
+  genres: GenreModel[] = []; 
   constructor() {
     this.genreForm = this.fb.group({
-      idGenre: [0],
+      idGenre: [null],
       name: ['', Validators.required],
     });
   }
@@ -37,10 +34,13 @@ export class GenresComponent {
     this.fetchGenres()
   }
 
-  openUpdateModal(genre: GetGenreModel): void {
+  openUpdateModal(genre: GenreModel): void {
     this.isOpenUpdateModal = true;
-    this.selectedGenre = genre
-    this.genreForm?.patchValue(genre);
+    this.selectedGenre = genre.idGenre
+    this.genreForm.patchValue({
+      idGenre: genre.idGenre,
+      name: genre.name
+    });
   }
 
   openModal() {
@@ -48,14 +48,18 @@ export class GenresComponent {
   }
   closeModal() {
     this.isOpenModal = false;
+    this.genreForm.reset();
+    this.errorMessage = null;
   }
   closeUpdateModal() {
     this.isOpenUpdateModal = false;
+    this.genreForm.reset();
+    this.errorMessage = null;
   }
 
   fetchGenres() {
     this.genreService.getGenres().subscribe(
-      (data: GetGenreModel[]) => {
+      (data: GenreModel[]) => {
         this.genres = data; // Actualiza la lista de géneros
       },
       error => {
@@ -64,12 +68,6 @@ export class GenresComponent {
     );
   }
   
-  //Dependiendo el id mostrará el detalle
-  loadGenreDetails(id:number):void{
-    this.genreService.getGenreById(id).subscribe((genre)=>{
-      this.selectedGenre = genre;
-    })
-  }
   addGenre(): void {
     if(this.genreForm.valid){
       //validamos que todos los datos se hayan colocado correctamente
@@ -91,15 +89,16 @@ export class GenresComponent {
     }
   }
   updateGenre(): void {
-    this.genreService.update(this.genreId, this.updatedGenreData).subscribe(
+    const updatedGenre: GenreModel = this.genreForm.value;
+    this.genreService.update(this.selectedGenre, updatedGenre).subscribe(
       response => {
         console.log('Género actualizado:', response);
         this.fetchGenres();
+        this.closeUpdateModal();
       },
       error => {
         console.error('Error al actualizar el género:', error);
       }
     );
   }
-  
 }

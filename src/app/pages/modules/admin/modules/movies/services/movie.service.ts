@@ -23,7 +23,7 @@ export class MovieService {
     return this.http.post<Movie>(`${this.url}/create`, data);
   }
 
-  update(id: number,data: UpdateMovie): Observable<UpdateMovie> {
+  update(id: number,data: GetMovie): Observable<UpdateMovie> {
     return this.http.put<UpdateMovie>(`${this.url}/${id}`, data);
   }
 }

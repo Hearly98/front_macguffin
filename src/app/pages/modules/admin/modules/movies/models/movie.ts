@@ -1,6 +1,5 @@
 export class Movie{
     title: string = "";
-    //code: string = "";
     description: string = "";
     release_year: string = "";
     idGenre: number = 0;
