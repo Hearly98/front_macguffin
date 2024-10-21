@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit{
                 this.message = "¡Login exitoso!";
                 this.success = true;
                 setTimeout(() => {
-                    this.router.navigate(['/admin']); // Redirige después de 3 segundos
+                    this.router.navigate(['/movies']);
                 }, 3000);
             },
             error: (error) => {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit{
                     this.message = `Los datos ingresados son incorrectos`;
                 this.success = false;
                 setTimeout(() => {
-                    this.message = ""; // Elimina el mensaje después de 3 segundos
+                    this.message = "";
                 }, 3000);
             }
         });
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit{
         this.message = "Por favor, ingrese todos los campos requeridos.";
         this.success = false;
         setTimeout(() => {
-            this.message = ""; // Elimina el mensaje de advertencia después de 3 segundos
+            this.message = "";
         }, 3000);
     }
 }

@@ -1,0 +1,17 @@
+<a 
+  [routerLink]="['/movies/movie', movie.movie_id]" 
+  routerLinkActive="router-link-active"
+  (click)="onClick(movie.movie_id)"
+  class="w-[150px] overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer bg-neutral-600 rounded-lg"
+>
+  <div class="p-0">
+    <img
+      [src]="movie.poster_url"
+      [alt]="movie.title"
+      class="w-full h-[225px] object-cover"
+    />
+    <div class="p-2">
+      <h3 class="text-neutral-100 font-playfair font-medium truncate">{{ movie.title }}</h3>
+    </div>
+  </div>
+</a>
