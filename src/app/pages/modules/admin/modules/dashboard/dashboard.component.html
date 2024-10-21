@@ -1,1 +1,59 @@
-<p>dashboard works!</p>
+<div class="flex flex-wrap justify-center items-center m-4 py-10 px-20 gap-10">
+    <div class="p-6 max-w-sm h-40 w-96 bg-white rounded-lg border border-gray-200 shadow-md m-2">
+      <div class="flex justify-between">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Clientes</h5>
+        <img
+          src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/Users_icon.svg"
+          alt=""
+        />
+      </div>
+      <p class="font-semibold text-gray-700 text-2xl">{{ clientsCount }}</p>
+    </div>
+    
+    <div class="p-6 max-w-sm h-40 w-96 bg-white rounded-lg border border-gray-200 shadow-md m-2">
+      <div class="flex justify-between">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Clientes Activos</h5>
+        <img
+          src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/Users_icon.svg"
+          alt=""
+        />
+      </div>
+      <p class="font-semibold text-gray-700 text-2xl">{{ activeCount }}</p>
+    </div>
+    
+    <div class="p-6 max-w-sm h-40 w-96 bg-white rounded-lg border border-gray-200 shadow-md m-2">
+      <div class="flex justify-between">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Clientes Inactivos</h5>
+        <img
+          src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/Users_icon.svg"
+          alt=""
+        />
+      </div>
+      <p class="font-semibold text-gray-700 text-2xl">{{ inactiveCount }}</p>
+    </div>
+  </div>
+  
+  <div class="flex flex-wrap justify-center items-center m-4 py-10 px-20 gap-10">
+    <div class="p-6 max-w-sm h-40 w-96 bg-white rounded-lg border border-gray-200 shadow-md m-2">
+      <div class="flex justify-between">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Películas</h5>
+        <img
+          src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/Users_icon.svg"
+          alt=""
+        />
+      </div>
+      <p class="font-semibold text-gray-700 text-2xl">{{ moviesCount }}</p>
+    </div>
+    
+    <div class="p-6 max-w-sm h-40 w-96 bg-white rounded-lg border border-gray-200 shadow-md m-2">
+      <div class="flex justify-between">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Géneros</h5>
+        <img
+          src="https://makbadxzoirjxbltiuwi.supabase.co/storage/v1/object/public/images/Users_icon.svg"
+          alt=""
+        />
+      </div>
+      <p class="font-semibold text-gray-700 text-2xl">{{ genresCount }}</p>
+    </div>
+  </div>
+  

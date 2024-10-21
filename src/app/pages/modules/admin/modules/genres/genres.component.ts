@@ -25,7 +25,7 @@ export class GenresComponent {
   genres: GenreModel[] = []; 
   constructor() {
     this.genreForm = this.fb.group({
-      idGenre: [null],
+      genre_id: [null],
       name: ['', Validators.required],
     });
   }
@@ -35,13 +35,13 @@ export class GenresComponent {
   }
 
   openUpdateModal(genre: GenreModel): void {
-    this.isOpenUpdateModal = true;
-    this.selectedGenre = genre.idGenre
-    this.genreForm.patchValue({
-      idGenre: genre.idGenre,
-      name: genre.name
-    });
-  }
+   this.isOpenUpdateModal = true;
+      this.selectedGenre = genre.genre_id;
+      this.genreForm.patchValue({
+        genre_id: genre.genre_id,
+        name: genre.name
+      });
+    }
 
   openModal() {
     this.isOpenModal = true;
@@ -90,6 +90,7 @@ export class GenresComponent {
   }
   updateGenre(): void {
     const updatedGenre: GenreModel = this.genreForm.value;
+    console.log(this.genreForm.value)
     this.genreService.update(this.selectedGenre, updatedGenre).subscribe(
       response => {
         console.log('Género actualizado:', response);

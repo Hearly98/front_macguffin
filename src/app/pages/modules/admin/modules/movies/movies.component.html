@@ -37,40 +37,42 @@
         </button>
         <form [formGroup]="movieForm" (ngSubmit)="addMovie()" class="flex flex-col gap-3" enctype="multipart/form-data">
             <h2 class="font-semibold text-4xl text-darkBlue">Crear película</h2>
-            <div>
-                <label for="name">Nombre de la Película</label>
-                <input type="text" class="border rounded-lg p-2" formControlName="name" placeholder="Nombre de la película">   
-                <div *ngIf="movieForm.get('name')?.invalid && movieForm.get('name')?.touched">
+            <div class="flex flex-col gap-3">
+                <label for="title">Nombre de la Película</label>
+                <input type="text" class="border rounded-lg p-2" formControlName="title" placeholder="Nombre de la película">   
+                <div *ngIf="movieForm.get('title')?.invalid && movieForm.get('title')?.touched">
                     <span class="text-sm text-red-800">El nombre de la película es requerido</span>
                 </div> 
             </div>
-            <div>
-                <label for="idGenre">Género de la película</label>
-                <select formControlName="idGenre" class="form-select" required>
-                    <option value="" disabled selected>Seleccione un género</option>
-                    <option *ngFor="let genre of genres" [value]="genre.idGenre">{{ genre.name }}</option>
-                  </select>
-                <div *ngIf="movieForm.get('idGenre')?.invalid && movieForm.get('idGenre')?.touched">
+            <div class="flex flex-col gap-3">
+                <label for="genre">Género de la película</label>
+                <div formGroupName="genre">
+                    <select formControlName="genre_id" class="form-select w-full p-2 border" required>
+                        <option [ngValue]="null" disabled selected>Seleccione un género</option>
+                        <option *ngFor="let genre of genres" [ngValue]="genre.genre_id">{{ genre.name }}</option>
+                    </select>
+                </div> 
+                <div *ngIf="movieForm.get('genre')?.invalid && movieForm.get('genre')?.touched">
                     <span class="text-sm text-red-800">El género es requerido</span>
                 </div> 
             </div>
-            <div>
+            <div class="flex flex-col gap-3">
+                <label for="release_year">Año de Lanzamiento</label>
+                <input type="number" formControlName="release_year" class="border rounded-lg p-2">
+                <div *ngIf="movieForm.get('release_year')?.invalid && movieForm.get('release_year')?.touched">
+                    <span class="text-sm text-red-800">El año de lanzamiento es requerido</span>
+                </div>
+            </div>
+            <div class="flex flex-col gap-3">
                 <label for="description">Descripción de la película</label>
-                <textarea class="border rounded-lg p-2" formControlName="description" placeholder="Descripción de la película"></textarea>
+                <textarea class="border rounded-lg p-2 w-full" formControlName="description" placeholder="Descripción de la película"></textarea>
                 <div *ngIf="movieForm.get('description')?.invalid && movieForm.get('description')?.touched">
                     <span class="text-sm text-red-800">La descripción de la película es requerida</span>
                 </div> 
             </div>
-            <div>
-                <label for="price">Precio</label>
-                <input type="number" formControlName="price" class="border rounded-lg p-2">
-                <div *ngIf="movieForm.get('price')?.invalid && movieForm.get('price')?.touched">
-                    <span class="text-sm text-red-800">El precio de la película es requerido</span>
-                </div>
-            </div>
-            <div>
-                <label for="image">Imagen</label>
-                <input type="file" formControlName="image">
+            <div class="flex flex-col gap-3">
+                <label for="poster_url">Imagen</label>
+                <input type="file" formControlName="poster_url">
             </div>
             <button type="submit" class="bg-blue-600 text-white p-2">Guardar Película</button>
         </form>
@@ -83,42 +85,43 @@
         <button (click)="closeUpdateModal()" class="absolute top-3 right-3">
             <img src="/assets/icons/Close.svg" alt="close" loading="lazy">
         </button>
-        <form [formGroup]="movieForm" (ngSubmit)="updateMovie()" class="flex flex-col gap-3" enctype="multipart/form-data">
+        <form [formGroup]="movieForm" (ngSubmit)="updateMovie()"  class="flex flex-col gap-3" enctype="multipart/form-data">
             <h2 class="font-semibold text-4xl text-darkBlue">Actualizar película</h2>
-            <div>
-                <label for="name">Nombre de la Película</label>
-                <input type="text" class="border rounded-lg p-2" formControlName="name" placeholder="Nombre de la película">   
-                <div *ngIf="movieForm.get('name')?.invalid && movieForm.get('name')?.touched">
+            <div class="flex flex-col gap-3">
+                <label for="title">Nombre de la Película</label>
+                <input type="text" class="border rounded-lg p-2 w-full" formControlName="title" placeholder="Nombre de la película">   
+                <div *ngIf="movieForm.get('title')?.invalid && movieForm.get('title')?.touched">
                     <span class="text-sm text-red-800">El nombre de la película es requerido</span>
                 </div> 
             </div>
-            <div>
+            <div class="flex flex-col gap-3">
                 <label for="genre">Género de la película</label>
-                <select formControlName="genre">
-                    <option *ngFor="let genre of genres" [ngValue]="genre.idGenre">{{ genre.name }}</option>
-                </select>
-                
-                <div *ngIf="movieForm.get('genre')?.invalid && movieForm.get('genre')?.touched">
+                <div formGroupName="genre">
+                    <select formControlName="genre_id" class="form-select w-full p-2 border" required>
+                        <option *ngFor="let genre of genres" [ngValue]="genre.genre_id">{{ genre.name }}</option>
+                    </select>
+                </div> 
+                <div *ngIf="movieForm.get('genre.genre_id')?.invalid && movieForm.get('genre.genre_id')?.touched">
                     <span class="text-sm text-red-800">El género es requerido</span>
                 </div> 
+            </div>            
+            <div class="flex flex-col gap-3">
+                <label for="release_year">Año de Lanzamiento</label>
+                <input type="number" formControlName="release_year" class="border rounded-lg p-2">
+                <div *ngIf="movieForm.get('release_year')?.invalid && movieForm.get('release_year')?.touched">
+                    <span class="text-sm text-red-800">El año de lanzamiento es requerido</span>
+                </div>
             </div>
-            <div>
+            <div class="flex flex-col gap-3">
                 <label for="description">Descripción de la película</label>
                 <textarea class="border rounded-lg p-2" formControlName="description" placeholder="Descripción de la película"></textarea>
                 <div *ngIf="movieForm.get('description')?.invalid && movieForm.get('description')?.touched">
                     <span class="text-sm text-red-800">La descripción de la película es requerida</span>
                 </div> 
             </div>
-            <div>
-                <label for="price">Precio</label>
-                <input type="number" formControlName="price" class="border rounded-lg p-2">
-                <div *ngIf="movieForm.get('price')?.invalid && movieForm.get('price')?.touched">
-                    <span class="text-sm text-red-800">El precio de la película es requerido</span>
-                </div>
-            </div>
-            <div>
-                <label for="image">Imagen</label>
-                <input type="file" formControlName="image">
+            <div class="flex flex-col gap-3">
+                <label for="poster_url">Imagen</label>
+                <input type="file" formControlName="poster_url">
             </div>
             <button type="submit" class="bg-blue-600 text-white p-2">Actualizar Película</button>
         </form>

@@ -10,7 +10,7 @@ import { RegisterModel } from '../models/register';
   providedIn: 'root'
 })
 export class AuthService {
-   apiUrl = environment.API_SERVICE_AUTH;
+   apiUrl = environment.API_SERVICE_ORQUESTADOR;
     public jwtHelperService: JwtHelperService = new JwtHelperService();
   constructor(private http: HttpClient,
   ) { }

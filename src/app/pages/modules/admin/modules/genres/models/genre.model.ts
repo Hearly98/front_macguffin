@@ -1,4 +1,4 @@
 export class GenreModel {
-    idGenre: number = 0;
+    genre_id: number = 0;
     name: string = "";
 }
