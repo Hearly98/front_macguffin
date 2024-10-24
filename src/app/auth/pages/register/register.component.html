@@ -1,26 +1,26 @@
 <div class="bg-neutral-900 flex flex-col md:flex-auto sm:flex-row py-16 px-10 h-screen justify-center items-center md:gap-10">
     <div class="hidden md:block">
-        <img class="max-w-96 rounded-2xl" src="/assets/images/rollos.png" alt="rollos de película">
+      <img class="max-w-96 rounded-2xl" src="/assets/images/rollos.png" alt="rollos de película">
     </div>
     <form class="flex flex-col text-neutral-100 py-16 px-2 gap-5 justify-center min-w-96 max-w-auto" (submit)="doRegister()">
-        <div>
-            <h1 class="text-6xl font-playfair text-center">MacGuffin</h1>
-        </div>
-        <div class="flex flex-col justify-stretch    items-start w-full">
-            <label>Nombre</label>
-            <input [(ngModel)]="registerModel.nombre" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su nombre" type="text">
-            <label >Apellidos</label>
-            <input [(ngModel)]="registerModel.apellido" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su apellido" type="text">
-            <label for="">Fecha de Nacimiento</label>
-            <input [(ngModel)]="registerModel.fechaNacimiento" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3 " placeholder="Ingrese su Fecha de Nacimiento" type="date">
-            <label>Teléfono</label>
-            <input [(ngModel)]="registerModel.telefono" [ngModelOptions]="{standalone: true}"  class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su teléfono" type="text">
-            <label>Nombre de usuario</label>
-            <input [(ngModel)]="registerModel.usuario" [ngModelOptions]="{standalone: true}"  class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su nombre de usuario" type="text">
-            <label>Contraseña</label>
-            <input [(ngModel)]="registerModel.password"  [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su contraseña" type="password">
-
-        </div>
-        <button class="rounded-lg  hover:bg-neutral-200 bg-neutral-300 text-neutral-900 font-bold py-4 px-16" type="submit">Registrarse</button>
+      <div>
+        <h1 class="text-6xl font-playfair text-center">MacGuffin</h1>
+      </div>
+      <div class="flex flex-col justify-stretch items-start w-full">
+        <label>Nombre</label>
+        <input [(ngModel)]="registerModel.nombre" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su nombre" type="text">
+        <label>Apellidos</label>
+        <input [(ngModel)]="registerModel.apellido" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su apellido" type="text">
+        <label>Fecha de Nacimiento</label>
+        <input [(ngModel)]="registerModel.fechaNacimiento" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su Fecha de Nacimiento" type="date">
+        <label>Teléfono</label>
+        <input [(ngModel)]="registerModel.telefono" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su teléfono" type="text">
+        <label>Nombre de usuario</label>
+        <input [(ngModel)]="registerModel.usuario" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su nombre de usuario" type="text" required>
+        <label>Contraseña</label>
+        <input [(ngModel)]="registerModel.password" [ngModelOptions]="{standalone: true}" class="bg-transparent text-neutral-100 border w-full rounded-lg p-3" placeholder="Ingrese su contraseña" type="password" required>
+      </div>
+      <button class="rounded-lg hover:bg-neutral-200 bg-neutral-300 text-neutral-900 font-bold py-4 px-16" type="submit">Registrarse</button>
     </form>
-</div>
+  </div>
+  <span class="font-medium ml-1">{{ message }}</span>

@@ -14,7 +14,7 @@ export class MovieCardComponent {
   @Input() movie!: GetMovie;
 
   onClick(movieId: number) {
-    console.log(`Navigating to movie with ID: ${movieId}`);
+    console.log(`ID de película: ${movieId}`);
   }
   
 }

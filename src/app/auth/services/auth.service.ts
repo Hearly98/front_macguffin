@@ -11,6 +11,7 @@ import { RegisterModel } from '../models/register';
 })
 export class AuthService {
    apiUrl = environment.API_SERVICE_ORQUESTADOR;
+   username = `${environment.API_SERVICE_ORQUESTADOR}/users`
     public jwtHelperService: JwtHelperService = new JwtHelperService();
   constructor(private http: HttpClient,
   ) { }
@@ -35,10 +36,16 @@ login(loginData: LoginRequest): Observable<LoginResponse> {
     }),
     catchError(this.handleError)
   );
+
+  
 }
 
 
-
+// Método para obtener los datos de un usuario por username
+getUserByUsername(username: string): Observable<any> {
+  const url = `${this.username}/${username}`; // URL de la API para obtener usuario por username
+  return this.http.get<any>(url);
+}
 
 
 register(loginData: RegisterModel): Observable<any>{

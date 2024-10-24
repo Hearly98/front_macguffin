@@ -1,10 +1,10 @@
-<section class="w-full px-14 py-6">
+<section class="w-full px-12 py-6">
     <h1 class="font-semibold text-4xl text-darkBlue">Película</h1>
     <div class="flex justify-between py-6">
         <button (click)="openModal()" class="bg-gray-300 p-2 font-medium rounded-lg">Crear Nuevo</button>
     </div>
-    <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+    <div class="relative max-h-[700px] overflow-y-auto">
+        <table class="w-full text-xs text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">Nombre Película</th>
@@ -21,7 +21,9 @@
                     <td class="px-6 py-4 font-light text-gray-900 whitespace-nowrap">{{movie.genre?.name}}</td>
                     <td class="px-6 py-4 font-light text-gray-900 whitespace-nowrap">{{movie.description}}</td>
                     <td class="flex px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        <button (click)="openUpdateModal(movie)"><img src="/assets/icons/Edit.svg"/></button>
+                        <button (click)="openUpdateModal(movie)">
+                            <img src="/assets/icons/Edit.svg" />
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -85,7 +87,7 @@
         <button (click)="closeUpdateModal()" class="absolute top-3 right-3">
             <img src="/assets/icons/Close.svg" alt="close" loading="lazy">
         </button>
-        <form [formGroup]="movieForm" (ngSubmit)="updateMovie()"  class="flex flex-col gap-3" enctype="multipart/form-data">
+        <form [formGroup]="movieForm" (ngSubmit)="updateMovie()" class="flex flex-col gap-3" enctype="multipart/form-data">
             <h2 class="font-semibold text-4xl text-darkBlue">Actualizar película</h2>
             <div class="flex flex-col gap-3">
                 <label for="title">Nombre de la Película</label>
@@ -117,6 +119,13 @@
                 <textarea class="border rounded-lg p-2" formControlName="description" placeholder="Descripción de la película"></textarea>
                 <div *ngIf="movieForm.get('description')?.invalid && movieForm.get('description')?.touched">
                     <span class="text-sm text-red-800">La descripción de la película es requerida</span>
+                </div> 
+            </div>
+            <div class="flex flex-col gap-3">
+                <label for="movie_Url">Url del video</label>
+                <textarea class="border rounded-lg p-2" formControlName="movie_Url" placeholder="Ruta del video"></textarea>
+                <div *ngIf="movieForm.get('movie_Url')?.invalid && movieForm.get('movie_Url')?.touched">
+                    <span class="text-sm text-red-800">La url no debe estar vacia</span>
                 </div> 
             </div>
             <div class="flex flex-col gap-3">

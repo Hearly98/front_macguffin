@@ -6,9 +6,9 @@
 >
   <div class="p-0">
     <img
-      [src]="movie.poster_url"
+      [src]="'/assets/images/movies/' + movie.poster_url"
       [alt]="movie.title"
-      class="w-full h-[225px] object-cover"
+      class="w-[226] h-[396px] object-cover"
     />
     <div class="p-2">
       <h3 class="text-neutral-100 font-playfair font-medium truncate">{{ movie.title }}</h3>

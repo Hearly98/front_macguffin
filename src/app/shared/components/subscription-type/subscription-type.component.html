@@ -1,0 +1,18 @@
+<div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg z-60">
+    <h2 class="text-2xl font-bold mb-4">Elige tu Plan de Suscripción</h2>
+    <div class="flex justify-center gap-10">
+      <div class="card">
+        <h3 class="text-lg font-semibold">Plan Premium</h3>
+        <p>Acceso ilimitado a todas las películas</p>
+        <button (click)="subscribeNow()" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Suscribirse</button>
+      </div>
+      <div class="card">
+        <h3 class="text-lg font-semibold">Suscribirse más tarde</h3>
+        <p>Puedes ver trailers y consultar el catálogo, pero no podrás ver las películas completas.</p>
+        <button (click)="subscribeLater()" class="mt-2 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">Suscribirse más tarde</button>
+      </div>
+    </div>
+    <button (click)="closeModal()" class="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Cerrar</button>
+  </div>
+</div>

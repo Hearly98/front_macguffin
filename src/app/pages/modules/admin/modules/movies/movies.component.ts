@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { GenreService } from '../genres/services/genre.service';
 import { GenreModel } from '../genres/models/genre.model';
 import { Movie } from './models/movie';
-import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-movies',
   standalone: true,
@@ -34,6 +33,7 @@ export class MoviesComponent implements OnInit {
         genre_id: [null, Validators.required],
       }),
       poster_url: '',
+      movie_Url: ''
     });
     
   }
@@ -51,7 +51,8 @@ export class MoviesComponent implements OnInit {
       description: movie.description,
       release_year: movie.release_year,
       genre: { genre_id: movie.genre?.genre_id },
-      poster_url: ''
+      poster_url: '',
+      movie_Url: movie.movie_Url
     });                     
     this.isOpenUpdateModal = true;
   }
@@ -114,7 +115,8 @@ export class MoviesComponent implements OnInit {
             name: formValue.genre.name
           },
           poster_url: formValue.poster_url || '',
-          movie_id: 0
+          movie_id: 0,
+          movie_Url: ''
         };
 
         this.movieService.create(newMovie).subscribe(
